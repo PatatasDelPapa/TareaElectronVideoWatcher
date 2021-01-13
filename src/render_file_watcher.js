@@ -11,13 +11,14 @@ let listaReproduccion = [];
 
 let flag = true;
 startBtn.addEventListener('click', function(e) {
-    flag = true;
+    // flag = true;
     path = dialog.showOpenDialogSync(mainWindow, {
         properties: ['openDirectory']
       })
     function mirar(path) { 
-        listaReproduccion = [];
         if (path) {
+            flag = true;
+            listaReproduccion = [];
             console.log(path);
             const watcher = chokidar.watch(path+"/*.mp4", { persistent: true });
             watcher
@@ -25,11 +26,13 @@ startBtn.addEventListener('click', function(e) {
                 console.log(`File ${path} has been added`)
                 videos.add(path);
                 listaReproduccion.push(path);
+                console.log(listaReproduccion);
             })
             .on('unlink', path => {
                 console.log(`File ${path} has been removed`)
                 videos.delete(path);
                 listaReproduccion = [...videos];
+                console.log(listaReproduccion);
             });
             
             // More possible events.
