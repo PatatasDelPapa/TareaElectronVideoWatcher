@@ -11,12 +11,13 @@ let listaReproduccion = [];
 
 let flag = true;
 startBtn.addEventListener('click', function(e) {
+    flag = true;
     path = dialog.showOpenDialogSync(mainWindow, {
         properties: ['openDirectory']
       })
     function mirar(path) { 
+        listaReproduccion = [];
         if (path) {
-            let flag = true;
             console.log(path);
             const watcher = chokidar.watch(path+"/*.mp4", { persistent: true });
             watcher
@@ -48,6 +49,7 @@ startBtn.addEventListener('click', function(e) {
 const clearBtn = document.getElementById('clearBtn');
 
 watchBtn.addEventListener('click', function(e) {
+    console.log(`Flag is ${flag}`);
     if (flag) {
         if ( listaReproduccion.length !== 0 ) {
             flag = false;
