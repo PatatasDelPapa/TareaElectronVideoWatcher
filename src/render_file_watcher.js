@@ -6,7 +6,7 @@ const watchBtn = document.getElementById('watchBtn');
 
 const videoElement = document.querySelector('video');
 
-let videos = new Set(); // Some list
+let videos = new Set();
 let listaReproduccion = [];
 
 let flag = true;
@@ -14,8 +14,6 @@ startBtn.addEventListener('click', function(e) {
     path = dialog.showOpenDialogSync(mainWindow, {
         properties: ['openDirectory']
       })
-    // console.log("AJUAAAAA");
-    // console.log(path);
     function mirar(path) { 
         if (path) {
             let flag = true;
@@ -60,18 +58,6 @@ watchBtn.addEventListener('click', function(e) {
     }
 });
 
-
-// const Compare = (arr1, arr2) => {
-//     if (arr1.length != arr2.length) {
-//       return false
-//     }
-  
-//     let a1 = arr1.map(e => JSON.stringify(e)).sort()
-//     let a2 = arr2.map(e => JSON.stringify(e)).sort()
-    
-//     return !a1.map((e, i) => e == a2[i]).includes(false)
-//   }
-
 async function playVideo() {
     console.log(listaReproduccion);
     video = listaReproduccion.shift();
@@ -83,18 +69,3 @@ async function playVideo() {
 }
 
 videoElement.onended = playVideo;
-
-// const stopBtn = document.getElementById('stopBtn');
-
-// Initialize watcher.
-
- 
-// Add event listeners.
-
-
-
-// stopBtn.onclick = e => {
-  
-//   startBtn.classList.remove('is-danger');
-//   startBtn.innerText = 'Start';
-// };
